@@ -1,68 +1,41 @@
 <?php
 
-function get_price($product)
-{
-        
-	try {
-    	$conn = new PDO("sqlsrv:server = tcp:localhost17.database.windows.net,1433; Database = patels18_db", "patels18", "Cloudif9bre");
-    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	function get_price($product)
+	{
+		$host = "tcp:localhost17.database.windows.net,1433";
+		$user = "patels18@localhost17";
+		$pwd  = "Cloudif9bre";
+		$db   = "patels18_db";
+	    	$conn = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pwd);
+	    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+		$sql = ("SELECT price FROM products WHERE product = '$product'");
+		$stmt = $conn->query("$sql");
+		$row = $stmt->fetch();
+		$price = $row["price"];
+		$conn = NULL;
+	 	return $price;	
+		
 	}
-	catch (PDOException $e) {
-    	print("Error connecting to SQL Server.");
-    	die(print_r($e));
-	}
-
-       $sql = "SELECT price FROM products WHERE product = '$product'";
-
-       $result = $conn->query($sql);
 	
-
-         if ($result->num_rows > 0) {
-             
-             while($row = $result->fetch_assoc()) {
-                      $price = $row["price"];
-      }
-    } 
-else {
-                     $price = null;
-        }
-
-    $conn->close();
-
-    return $price;
-}
-
-function get_designer($product)
-{
-        
-       
-	try {
-    	$conn = new PDO("sqlsrv:server = tcp:localhost17.database.windows.net,1433; Database = patels18_db", "patels18", "Cloudif9bre");
-    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (PDOException $e) {
-    	print("Error connecting to SQL Server.");
-    	die(print_r($e));
+	function get_designer($product)
+	{
+		$host = "tcp:localhost17.database.windows.net,1433";
+		$user = "patels18@localhost17";
+		$pwd  = "Cloudif9bre";
+		$db   = "patels18_db";
+	    	$conn = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pwd);
+	    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+		$sql = ("SELECT designer FROM products WHERE product = '$product'");
+		$stmt = $conn->query("$sql");
+		$row = $stmt->fetch();
+		$designer = $row["designer"];
+		$conn = NULL;
+	 	return $designer;	
+		
 	}
 
-     	$sql1 = "SELECT designer FROM products WHERE product = '$product'";
-
-       	$result1 = $conn->query($sql1);
-
-         if ($result1->num_rows > 0) {
-             
-             while($row = $result1->fetch_assoc()) {
-                      $designer = $row["designer"];
-      }
-    } 
-else {
-                     $designer = null;
-        }
-
-    $conn->close();
-
-    return $designer;
-}
 
 ?>
 
