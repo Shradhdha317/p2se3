@@ -2,12 +2,10 @@
 
 	function get_price($product)
 	{
-		$host = "tcp:localhost17.database.windows.net,1433";
-		$user = "patels18@localhost17";
-		$pwd  = "Cloudif9bre";
-		$db   = "patels18_db";
-	    	$conn = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pwd);
-	    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$conn=mysqli_init(); 
+	mysqli_ssl_set($conn, NULL, NULL, "C:/Users/shrad/Desktop/Github for cloud management/DigiCertGlobalRootG2.crt.pem", NULL, NULL); 
+	mysqli_real_connect($conn, "patels18.mysql.database.azure.com", "patels18@patels18", "Krishna@0115", "patels18_db", 3306);
+
 		
 		$sql = ("SELECT price FROM products WHERE product = '$product'");
 		$stmt = $conn->query("$sql");
@@ -20,13 +18,10 @@
 	
 	function get_designer($product)
 	{
-		$host = "tcp:localhost17.database.windows.net,1433";
-		$user = "patels18@localhost17";
-		$pwd  = "Cloudif9bre";
-		$db   = "patels18_db";
-	    	$conn = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pwd);
-	    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
+		$conn=mysqli_init(); 
+	mysqli_ssl_set($conn, NULL, NULL, "C:/Users/shrad/Desktop/Github for cloud management/DigiCertGlobalRootG2.crt.pem", NULL, NULL); 
+	mysqli_real_connect($conn, "patels18.mysql.database.azure.com", "patels18@patels18", "Krishna@0115", "patels18_db", 3306);
+
 		$sql = ("SELECT designer FROM products WHERE product = '$product'");
 		$stmt = $conn->query("$sql");
 		$row = $stmt->fetch();
