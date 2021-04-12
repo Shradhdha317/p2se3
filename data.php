@@ -9,8 +9,8 @@ function get_price($product)
 	$password = "Krishna@0115";
 	$dbname = "patels18_db";
 
-       
         $conn = new mysqli($servername, $username, $password, $dbname);
+	mysqli_ssl_set($conn, NULL, NULL, {ca-cert filename}, NULL, NULL); 
         
         if ($conn->connect_error) 
 	{
@@ -45,8 +45,8 @@ function get_designer($product)
 	$password = "Krishna@0115";
 	$dbname = "patels18_db";
 
-       
         $conn = new mysqli($servername, $username, $password, $dbname);
+	mysqli_ssl_set($conn, NULL, NULL, {ca-cert filename}, NULL, NULL); 
         
         if ($conn->connect_error) 
 	{
