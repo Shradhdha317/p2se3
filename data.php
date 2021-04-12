@@ -12,7 +12,6 @@ function get_price($product)
        $sql = "SELECT price FROM products WHERE product = '$product'";
 
        $result = $conn->query($sql);
-	
 
          if ($result->num_rows > 0) {
              
