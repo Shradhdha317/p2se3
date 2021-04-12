@@ -4,10 +4,20 @@
 function get_price($product)
 {
         
-        $conn=mysqli_init(); 
-	mysqli_ssl_set($conn, NULL, NULL, "C:\Users\shrad\Desktop\Github for cloud management\BaltimoreCyberTrustRoot.crt.pem", NULL, NULL); 
-	mysqli_real_connect($conn, "patels18.mysql.database.azure.com", "patels18@patels18", "Krishna@0115", "patels18_db", 3306); 
- 
+   
+//Initializes MySQLi
+$conn = mysqli_init();
+
+mysqli_ssl_set($conn,NULL,NULL, "/Users/shrad/Desktop/Github for cloud management/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+
+// Establish the connection
+mysqli_real_connect($conn, 'patels18.mysql.database.azure.com', 'patels18@patels18', 'Krishna@0115', 'patels18_db', 3306, NULL, MYSQLI_CLIENT_SSL);
+
+//If connection failed, show the error
+if (mysqli_connect_errno($conn))
+{
+    die('Failed to connect to MySQL: '.mysqli_connect_error());
+}
 
        $sql = "SELECT price FROM products WHERE product = '$product'";
 
@@ -30,10 +40,20 @@ else {
 
 function get_designer($product)
 {
-        
-	$conn=mysqli_init(); 
-	mysqli_ssl_set($conn, NULL, NULL, "C:\Users\shrad\Desktop\Github for cloud management\BaltimoreCyberTrustRoot.crt.pem", NULL, NULL); 
-	mysqli_real_connect($conn, "patels18.mysql.database.azure.com", "patels18@patels18", "Krishna@0115", "patels18_db", 3306); 
+       //Initializes MySQLi
+$conn = mysqli_init();
+
+mysqli_ssl_set($conn,NULL,NULL, "/Users/shrad/Desktop/Github for cloud management/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+
+// Establish the connection
+mysqli_real_connect($conn, 'patels18.mysql.database.azure.com', 'patels18@patels18', 'Krishna@0115', 'patels18_db', 3306, NULL, MYSQLI_CLIENT_SSL);
+
+//If connection failed, show the error
+if (mysqli_connect_errno($conn))
+{
+    die('Failed to connect to MySQL: '.mysqli_connect_error());
+}
+
         
      	$sql1 = "SELECT designer FROM products WHERE product = '$product'";
 
