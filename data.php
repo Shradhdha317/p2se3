@@ -52,7 +52,5 @@ else {
     return $designer;
 }
 
-
-
 ?>
 
